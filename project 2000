@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Resources and IT News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #2d89ef;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #2d89ef;
+        }
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+        section {
+            width: 48%;
+            background: #1f1f1f;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2d89ef;
+            border-radius: 8px;
+        }
+        h2 {
+            border-bottom: 2px solid #2d89ef;
+            padding-bottom: 8px;
+            color: #2d89ef;
+        }
+        .icon-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+        .icon-grid a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            background-color: #2d2d2d;
+            text-decoration: none;
+            color: #877f03;
+            font-size: 0.9em;
+            border: 1px solid #2d89ef;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .icon-grid a:hover {
+            background-color: #2d89ef;
+            color: #00ffbb;
+            transform: scale(1.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #2d89ef;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Programming Resources and IT News</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Programming Resources</h2>
+            <div class="icon-grid">
+                <a href="https://www.w3schools.com" target="_blank">W3Schools</a>
+                <a href="https://developer.mozilla.org" target="_blank">MDN</a>
+                <a href="https://www.codecademy.com" target="_blank">Codecademy</a>
+                <a href="https://www.freecodecamp.org" target="_blank">CodeCamp</a>
+                <a href="https://www.hackerrank.com" target="_blank">HackerRank</a>
+                <a href="https://www.udemy.com" target="_blank">Udemy</a>
+                <a href="https://www.coursera.org" target="_blank">Coursera</a>
+                <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a>
+                <a href="https://www.pluralsight.com" target="_blank">Pluralsight</a>
+                <a href="https://www.edx.org" target="_blank">edX</a>
+                <a href="https://leetcode.com" target="_blank">LeetCode</a>
+                <a href="https://www.geeksforgeeks.org" target="_blank">GeeksforGeeks</a>
+                <a href="https://www.stackoverflow.com" target="_blank">Stack Overflow</a>
+                <a href="https://www.github.com" target="_blank">GitHub</a>
+                <a href="https://gitlab.com" target="_blank">GitLab</a>
+                <a href="https://www.bitbucket.org" target="_blank">Bitbucket</a>
+                <a href="https://codepen.io" target="_blank">CodePen</a>
+                <a href="https://jsfiddle.net" target="_blank">JSFiddle</a>
+                <a href="https://www.theodinproject.com" target="_blank">Odin Project</a>
+                <a href="https://www.tutorialspoint.com" target="_blank">TutorialsPoint</a>
+                <a href="https://www.codewars.com" target="_blank">CodeWars</a>
+                <a href="https://www.sololearn.com" target="_blank">SoloLearn</a>
+                <a href="https://app.pluralsight.com" target="_blank">PluralSight</a>
+                <a href="https://learn.microsoft.com" target="_blank">MS Learn</a>
+                <a href="https://dart.dev" target="_blank">Dart Dev</a>
+                <a href="https://flutter.dev" target="_blank">Flutter Dev</a>
+                <a href="https://java.com" target="_blank">Java</a>
+                <a href="https://cplusplus.com" target="_blank">C++</a>
+                <a href="https://python.org" target="_blank">Python</a>
+                <a href="https://reactjs.org" target="_blank">React</a>
+            </div>
+        </section>
+        <section>
+            <h2>IT News</h2>
+            <ul>
+                <li><a href="https://techcrunch.com" target="_blank">TechCrunch</a></li>
+                <li><a href="https://www.theverge.com" target="_blank">The Verge</a></li>
+                <li><a href="https://www.wired.com" target="_blank">Wired</a></li>
+                <li><a href="https://www.cnet.com" target="_blank">CNET</a></li>
+                <li><a href="https://www.zdnet.com" target="_blank">ZDNet</a></li>
+                <li><a href="https://arstechnica.com" target="_blank">Ars Technica</a></li>
+                <li><a href="https://www.engadget.com" target="_blank">Engadget</a></li>
+                <li><a href="https://www.reddit.com/r/programming" target="_blank">Reddit - Programming</a></li>
+                <li><a href="https://www.reddit.com/r/technology" target="_blank">Reddit - Technology</a></li>
+                <li><a href="https://news.ycombinator.com" target="_blank">Hacker News</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Created by Maximus</p>
+    </footer>
+</body>
+</html>
