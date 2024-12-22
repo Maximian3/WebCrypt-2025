@@ -3,7 +3,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: auto; /* Set height to 100% of browser window height*/
+    height: 100%; /* Set height to 100% of browser window height*/
     width: auto; /* To ensure full width */
     display: flex;
     justify-content: flex-start;
@@ -40,8 +40,8 @@ h2 {
     font-weight: normal;
     font-size: 64px;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin-bottom: 1px;
+    margin-top: 1px;
     font-family: "Papyrus", sans-serif;
     color: rgb(255, 215, 0);
 }
@@ -50,6 +50,8 @@ h3 {
     color: rgb(255, 215, 0); 
     font-size: 33px;
     text-align: center;
+    margin-bottom: 36px;
+    margin-top: 1px;
 }
 
 label {
@@ -123,9 +125,12 @@ button:hover {
 }
 
 .form-section {
-    margin-bottom: 40px;
-    border-bottom: 2px dashed #00FF00;
-    padding-bottom: 20px;
+    border: 1px solid #00FF00; /* thin green frame */
+    border-radius: 8px; /* Rounded eyes (as desired) */
+    padding:  5px; /* Footsteps inside the frame */
+    margin-bottom: 19px; /* The end of the series */
+    background-color: rgba(64, 64, 64, 0.366); /* translucent background */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);  
 }
 
 .hidden {
@@ -226,9 +231,9 @@ footer {
 
 body {
     opacity: 0; /* hide body site */
-    transition: opacity 2s ease-in-out; /* floating load */
+    transition: opacity 2s ease-in-out; 
 }
 
 body.loaded {
-    opacity: 1; /* show body site */
+    opacity: 1; 
 }
