@@ -221,3 +221,11 @@ footer {
     width: 100%; /* Stretches the footer across the full width */
     font-size: 17px; /* Font size */
 }
+body {
+    opacity: 0; /* hide body site */
+    transition: opacity 2s ease-in-out; /* floating load */
+}
+
+body.loaded {
+    opacity: 1; /* show body site */
+}
