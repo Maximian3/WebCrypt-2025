@@ -212,15 +212,18 @@ button:hover {
 }
 
 footer {
-    background-color: #201e1e; /* Background color for the footer */
-    color: #51ff00; /* Text color */
+    background-color: #7c540aa2; /* Background color for the footer */
+    color: #050505; /* Text color */
     text-align: center; /* Center-align text */
-    padding: 0; /* Padding for top and bottom */
+    padding: 0 px ; /* Padding for top and bottom */
     position: fixed; /* To position it at the bottom of the page */
     bottom: 0; /* Aligns the footer at the bottom */
+    height: 50px;
     width: 100%; /* Stretches the footer across the full width */
-    font-size: 17px; /* Font size */
+    font-size: 20px; /* Font size */
+    font-family: "Papyrus", sans-serif;
 }
+
 body {
     opacity: 0; /* hide body site */
     transition: opacity 2s ease-in-out; /* floating load */
