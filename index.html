@@ -166,6 +166,10 @@
                     setTimeout(function() {
                         successMessage.style.display = 'none';
                     }, 4000); // 4000 ms = 4 seconds
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
                 };
 
                 reader.onerror = function() {
