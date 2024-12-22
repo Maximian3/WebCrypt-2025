@@ -13,6 +13,11 @@ html, body {
     font-family: 'Courier New', monospace;
     position: relative; 
     flex-direction: column;
+    background-image: url('foto/fon.jpg'); /* Path to your image */
+    background-size: cover; /* This will cause the image to cover the entire screen */
+    background-position: center; /* center the image */
+    background-repeat: no-repeat; /* So that the image is not repeated */
+    
 }
 .content {
     flex-grow: 1; 
@@ -22,7 +27,7 @@ html, body {
     width: 100%;
     max-width: 600px;
     padding: 20px;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8);
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
     box-sizing: border-box;
@@ -32,16 +37,17 @@ html, body {
 
 h2 {
     text-align: center;
-    color: #ff0000;
     font-weight: normal;
     font-size: 64px;
     text-transform: uppercase;
     margin-bottom: 20px;
     margin-top: 10px;
+    font-family: "Papyrus", sans-serif;
+    color: rgb(255, 215, 0);
 }
 
 h3 {
-    color: #ffd500;
+    color: rgb(255, 215, 0); 
     font-size: 33px;
     text-align: center;
 }
@@ -64,7 +70,7 @@ input[type="password"] {
     border-radius: 8px;
     font-size: 16px;
     background-color: #222;
-    color: #ffee06;
+    color: rgb(255, 215, 0); 
 }
 
 input[type="file"]:focus,
@@ -78,10 +84,10 @@ button {
     width: 99%;
     padding: 12px;
     background-color: #00FF00;
-    color: #1e1e1e;
+    color: rgb(164, 109, 46); 
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -89,7 +95,7 @@ button {
 }
 
 button:hover {
-    background-color: #FFD700;
+    background-color: rgb(255, 215, 0); 
 }
 
 #downloadLink {
