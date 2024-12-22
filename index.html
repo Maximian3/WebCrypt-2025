@@ -3,220 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Encryptor/Decryptor</title>
+    <title>File Encryption</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        body, html {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
         }
+
         .container {
-            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
             padding: 20px;
+            background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+
+        h2 {
             text-align: center;
             color: #333;
         }
-        form {
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #555;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
-        input[type="password"], input[type="file"] {
-            width: calc(100% - 22px);
+
+        input[type="file"],
+        input[type="password"] {
+            width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 16px;
         }
+
         button {
             width: 100%;
             padding: 10px;
+            background-color: #4CAF50;
+            color: white;
             border: none;
-            background-color: #007BFF;
-            color: #fff;
             border-radius: 4px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 1em;
         }
+
         button:hover {
-            background-color: #0056b3;
+            background-color: #45a049;
         }
-        .file-list {
+
+        #downloadLink {
+            text-align: center;
             margin-top: 20px;
         }
-        .file-list h2 {
-            margin-top: 20px;
-            color: #555;
-            font-size: 1.2em;
+
+        .error-message {
+            color: red;
+            text-align: center;
+            font-weight: bold;
         }
-        .file-list ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .file-list ul li {
-            margin-bottom: 5px;
-        }
-        .file-list ul li a {
-            text-decoration: none;
-            color: #007BFF;
-            cursor: pointer;
-        }
-        .message {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            border-radius: 4px;
-            display: none;
-        }
-        .error {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
-            display: none;
+
+        .success-message {
+            color: green;
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>File Encryptor/Decryptor</h1>
-        
-        <!-- Form for file encryption -->
-        <form id="encryptForm" action="/encrypt" method="post" enctype="multipart/form-data">
-            <h2>Encrypt a file</h2>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="file" name="file" accept=".pdf,.txt,.jpg,.png" required>
+        <h2>Encrypt a File</h2>
+        <form id="encryptForm">
+            <label for="fileInput">Select File:</label>
+            <input type="file" id="fileInput" required>
+            <label for="passwordInput">Enter Password:</label>
+            <input type="password" id="passwordInput" required>
             <button type="submit">Encrypt</button>
         </form>
-        
-        <!-- Form for file decryption -->
-        <form id="decryptForm" action="/decrypt" method="post" enctype="multipart/form-data">
-            <h2>Decrypt a file</h2>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="file" name="file" accept=".enc" required>
+
+        <h2>Decrypt a File</h2>
+        <form id="decryptForm">
+            <label for="decryptFileInput">Select Encrypted File:</label>
+            <input type="file" id="decryptFileInput" required>
+            <label for="decryptPasswordInput">Enter Password:</label>
+            <input type="password" id="decryptPasswordInput" required>
             <button type="submit">Decrypt</button>
         </form>
 
-        <!-- File upload form -->
-        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-            <h2>Upload a file</h2>
-            <input type="file" name="file" required>
-            <button type="submit">Upload</button>
-        </form>
-
-        <!-- File lists -->
-        <div class="file-list">
-            <h2>Encrypted Files</h2>
-            <ul id="encryptedFiles">
-                <!-- Encrypted files will be listed here -->
-            </ul>
-            <h2>Decrypted Files</h2>
-            <ul id="decryptedFiles">
-                <!-- Decrypted files will be listed here -->
-            </ul>
-        </div>
-
-        <!-- Messages -->
-        <div class="message" id="successMessage"></div>
-        <div class="error" id="errorMessage"></div>
+        <div id="downloadLink"></div>
+        <div class="error-message" id="errorMessage" style="display:none;"></div>
+        <div class="success-message" id="successMessage" style="display:none;"></div>
     </div>
 
     <script>
-        // Function to fetch and display encrypted and decrypted file lists
-        function fetchFileLists() {
-            fetch('/list_files')
-                .then(response => response.json())
-                .then(data => {
-                    const encryptedFilesList = document.getElementById('encryptedFiles');
-                    const decryptedFilesList = document.getElementById('decryptedFiles');
-
-                    // Clear previous lists
-                    encryptedFilesList.innerHTML = '';
-                    decryptedFilesList.innerHTML = '';
-
-                    // Populate encrypted files list
-                    data.encrypted.forEach(filename => {
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.textContent = filename;
-                        a.href = `/download/ENCRYPTED/${filename}`;
-                        li.appendChild(a);
-                        encryptedFilesList.appendChild(li);
-                    });
-
-                    // Populate decrypted files list
-                    data.decrypted.forEach(filename => {
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.textContent = filename;
-                        a.href = `/download/DECRYPTED/${filename}`;
-                        li.appendChild(a);
-                        decryptedFilesList.appendChild(li);
-                    });
-                })
-                .catch(error => console.error('Error fetching file lists:', error));
-        }
-
-        // Function to handle form submissions and update UI
-        function handleFormSubmit(formId, successMessage) {
-            const form = document.getElementById(formId);
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                const formData = new FormData(form);
-
-                fetch(form.action, {
-                    method: form.method,
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById(formId).reset();
-                    document.getElementById('successMessage').textContent = successMessage;
-                    document.getElementById('successMessage').style.display = 'block';
-                    document.getElementById('errorMessage').style.display = 'none';
-                    fetchFileLists();  // Update file lists after successful operation
-                })
-                .catch(error => {
-                    document.getElementById('errorMessage').textContent = 'Error occurred. Please try again.';
-                    document.getElementById('errorMessage').style.display = 'block';
-                    document.getElementById('successMessage').style.display = 'none';
-                    console.error('Error submitting form:', error);
-                });
+        // Convert a file to Base64 string
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    resolve(reader.result.split(',')[1]); // Return Base64 encoded string without the data URL prefix
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
             });
         }
 
-        // Initialize forms
-        handleFormSubmit('encryptForm', 'File encrypted successfully.');
-        handleFormSubmit('decryptForm', 'File decrypted successfully.');
-        handleFormSubmit('uploadForm', 'File uploaded successfully.');
+        // Encrypt the file
+        document.getElementById('encryptForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-        // Initial fetch of file lists
-        fetchFileLists();
+            const fileInput = document.getElementById('fileInput');
+            const passwordInput = document.getElementById('passwordInput');
+            const file = fileInput.files[0];
+            const password = passwordInput.value;
+
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const downloadLink = document.getElementById('downloadLink');
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            downloadLink.innerHTML = '';
+
+            if (!file || !password) {
+                errorMessage.textContent = 'Please select a file and enter a password.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            try {
+                // Convert file to Base64 string
+                const fileBase64 = await fileToBase64(file);
+
+                // Encrypt the Base64 string using AES
+                const encrypted = CryptoJS.AES.encrypt(fileBase64, password).toString();
+
+                // Create a Blob with the encrypted content and trigger download
+                const blob = new Blob([encrypted], { type: 'application/octet-stream' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = file.name + '.enc'; // Save as .enc file
+                link.click();
+
+                successMessage.textContent = 'File encrypted successfully! Downloading...';
+                successMessage.style.display = 'block';
+            } catch (error) {
+                errorMessage.textContent = 'Error during encryption. Please try again.';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Decrypt the file
+        document.getElementById('decryptForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const decryptFileInput = document.getElementById('decryptFileInput');
+            const decryptPasswordInput = document.getElementById('decryptPasswordInput');
+            const file = decryptFileInput.files[0];
+            const password = decryptPasswordInput.value;
+
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const downloadLink = document.getElementById('downloadLink');
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            downloadLink.innerHTML = '';
+
+            if (!file || !password) {
+                errorMessage.textContent = 'Please select an encrypted file and enter a password.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            try {
+                // Read encrypted file content as text (Base64 string)
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const encryptedBase64 = e.target.result;
+
+                    // Decrypt the Base64 string using AES
+                    const decryptedBytes = CryptoJS.AES.decrypt(encryptedBase64, password);
+                    const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
+
+                    if (!decryptedData) {
+                        errorMessage.textContent = 'Wrong password or corrupted file!';
+                        errorMessage.style.display = 'block';
+                        return;
+                    }
+
+                    // Convert decrypted data (Base64 string) back to binary
+                    const byteCharacters = atob(decryptedData);  // Decode Base64 back to binary
+                    const byteArrays = [];
+
+                    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+                        const slice = byteCharacters.slice(offset, offset + 512);
+                        const byteNumbers = new Array(slice.length);
+                        for (let i = 0; i < slice.length; i++) {
+                            byteNumbers[i] = slice.charCodeAt(i);
+                        }
+                        byteArrays.push(new Uint8Array(byteNumbers));
+                    }
+
+                    const blob = new Blob(byteArrays, { type: 'application/octet-stream' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = file.name.replace('.enc', ''); // Remove .enc extension
+                    link.click();
+
+                    successMessage.textContent = 'File decrypted successfully! Downloading...';
+                    successMessage.style.display = 'block';
+                };
+                reader.readAsText(file); // Read file as text (Base64 encoded string)
+            } catch (error) {
+                errorMessage.textContent = 'Error decrypting the file!';
+                errorMessage.style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>
