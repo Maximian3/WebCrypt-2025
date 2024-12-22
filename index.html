@@ -47,6 +47,14 @@
     </div>
 
     <script>
+        window.addEventListener("load", function () {
+            setTimeout(() => {
+                document.body.classList.add("loaded");
+            }, 5000); 
+        });
+    </script> 
+    
+    <script>
         // Convert a file to Base64 string
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
