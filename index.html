@@ -9,10 +9,8 @@
 </head>
 
 <body>
-
     <div class="container">
-        <h2>File Encryption & Decryption</h2>
-
+        <h2>WebCrypt 2025</h2>
         <div class="form-section">
             <h3>Encrypt a File</h3>
             <form id="encryptForm">
@@ -38,6 +36,14 @@
         <div id="downloadLink"></div>
         <div class="errorMessage" id="errorMessage"></div>
         <div class="successMessage" id="successMessage"></div>
+    </div>
+
+    <!-- Modal window for downloading indicator -->
+    <div id="loadingModal" class="loadingModal">
+        <div class="loadingContent">
+            <h3>Encrypting your file...</h3>
+            <div class="spinner"></div> <!-- download indicator -->
+        </div>
     </div>
 
     <script>
@@ -75,6 +81,7 @@
                 errorMessage.style.display = 'block';
                 return;
             }
+            loadingModal.style.display = 'flex';
 
             try {
                 // Convert file to Base64 string
@@ -95,10 +102,14 @@
                 // Hide the success message after 4 seconds
                 setTimeout(function() {
                     successMessage.style.display = 'none';
-                }, 4000); // 4000 ms = 4 seconds
+                }, 9000); // 9000 ms = 9 seconds
+
             } catch (error) {
                 errorMessage.textContent = 'Error during encryption. Please try again.';
                 errorMessage.style.display = 'block';
+            } finally {
+                // Hide the modal window after completing encryption
+                loadingModal.style.display = 'none';
             }
         });
 
@@ -165,7 +176,7 @@
                     successMessage.classList.remove('hidden');
                     setTimeout(function() {
                         successMessage.style.display = 'none';
-                    }, 4000); // 4000 ms = 4 seconds
+                    }, 5000); // 5000 ms = 5 seconds
 
                     setTimeout(() => {
                         location.reload();
@@ -186,5 +197,10 @@
 
     
     </script>
+
+    <footer>
+        <p>&copy; 2024 All rights reserved. "SaraffonoM"</p>
+    </footer>
+
 </body>
 </html>
