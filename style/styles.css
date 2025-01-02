@@ -180,6 +180,10 @@ button:hover {
         font-size: 12px;
         width: 91%;
     }
+    button {
+        width: 50%;
+        font-size: 14px;
+    }
 
     label {
         font-size: 14px;
