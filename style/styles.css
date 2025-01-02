@@ -65,7 +65,7 @@ label {
 
 input[type="file"],
 input[type="password"] {
-    width: auto;
+    width: 95%;
     padding: 12px;
     margin-bottom: 18px;
     border: 1px solid #00FF00;
@@ -83,7 +83,7 @@ input[type="password"]:focus {
 
 
 button {
-    width: 99%;
+    width: 100%;
     padding: 12px;
     background-color: #00FF00;
     color: rgb(164, 109, 46); 
@@ -152,6 +152,11 @@ button:hover {
     }
 
     input[type="file"], input[type="password"], button {
+        width: 91%;
+        font-size: 14px;
+    }
+
+    button {
         width: 100%;
         font-size: 14px;
     }
@@ -173,6 +178,7 @@ button:hover {
 
     input[type="file"], input[type="password"], button {
         font-size: 12px;
+        width: 91%;
     }
 
     label {
